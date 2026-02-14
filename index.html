@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIP Admin - Device Reset</title>
+    <title>VIP Admin - Custom Title Fixed</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -66,6 +66,18 @@
         /* --- CONFIG FORM --- */
         .inp-label { display: block; color: var(--muted); font-size: 0.75rem; font-weight: 700; margin-bottom: 6px; margin-top: 12px; }
         .inp-field { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 12px; color: #fff; border-radius: 10px; font-family: 'Outfit', sans-serif; }
+        /* Custom Input for Name */
+        #customUsernameInput {
+            display: none; 
+            margin-top: 10px; 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid var(--border); 
+            border-radius: 10px; 
+            background-color: rgba(255,255,255,0.05); 
+            color: white;
+            font-family: 'Outfit', sans-serif;
+        }
         
         /* Toggles */
         .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
@@ -100,7 +112,7 @@
             padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; cursor: pointer;
             font-weight: 700; transition: 0.2s; display: flex; align-items: center; gap: 5px;
         }
-        .gen-btn:active { background: var(--accent); color: #000; }
+        .gen-btn:active { transform: scale(0.95); background: var(--accent); color: #000; }
 
         .shortcut-row { display: flex; gap: 8px; margin-top: 8px; margin-bottom: 15px; }
         .btn-shortcut { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); color: var(--muted); padding: 8px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: 0.2s; flex: 1; }
@@ -145,7 +157,7 @@
                 <div class="controls">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" class="input-glass" id="searchUser" placeholder="Search Title" onkeyup="renderUsers()">
+                        <input type="text" class="input-glass" id="searchUser" placeholder="Search Title..." onkeyup="renderUsers()">
                     </div>
                     <button class="btn-gradient" onclick="openUserModal()"><i class="fas fa-user-plus"></i></button>
                 </div>
@@ -206,7 +218,22 @@
             <input type="hidden" id="editingIndex" value="-1">
             
             <div class="inp-label">TITLE / NAME</div>
-            <input type="text" class="inp-field" id="newTitle" placeholder="Customer Name">
+            <select class="inp-field" id="newTitle" required onchange="toggleCustomInput()">
+                <option value="" disabled selected>Select Admin No</option>
+                <option value="Admin 1">Admin 1</option>
+                <option value="Admin 2">Admin 2</option>
+                <option value="Admin 3">Admin 3</option>
+                <option value="Admin 4">Admin 4</option>
+                <option value="Admin 5">Admin 5</option>
+                <option value="Admin 6">Admin 6</option>
+                <option value="Admin 7">Admin 7</option>
+                <option value="Admin 8">Admin 8</option>
+                <option value="Admin 9">Admin 9</option>
+                <option value="Admin 10">Admin 10</option>
+                <option value="Admin 11">Admin 11</option>
+                <option value="Custom" style="color: var(--warn); font-weight: bold;">Custom</option>
+            </select>
+            <input type="text" id="customUsernameInput" placeholder="Enter Custom Name">
 
             <div class="inp-label">USERNAME</div>
             <input type="text" class="inp-field" id="newUsername" placeholder="Username">
@@ -219,20 +246,20 @@
             <div class="inp-label">DEVICE LIMIT</div>
             <input type="number" class="inp-field" placeholder="Max Devices" id="newLimit" value="1">
             <div class="shortcut-row">
+                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(1)">1</button>
+                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(2)">2</button>
+                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(3)">3</button>
                 <button type="button" class="btn-shortcut" onclick="setLimitShortcut(5)">5</button>
-                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(11)">11</button>
-                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(15)">15</button>
-                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(21)">21</button>
-                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(30)">30</button>
+                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(10)">10</button>
             </div>
 
             <div class="inp-label">EXPIRY DATE</div>
             <input type="date" class="inp-field" id="newExpiry">
             <div class="shortcut-row">
                 <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(-11)">Expire</button>
-                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(0)">1d</button>
-                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(14)">15d</button>
-                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(29)">30d</button>
+                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(1)">1d</button>
+                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(15)">15d</button>
+                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(33)">30d</button>
             </div>
             <button class="btn-gradient" style="width:100%; justify-content:center; margin-top:20px;" onclick="saveUser()" id="btnSaveUser">SAVE</button>
             <button class="btn-mini btn-view" style="width:100%; margin-top:10px; border:none;" onclick="closeModals()">CANCEL</button>
@@ -343,11 +370,23 @@
                 if(!manual) showToast("Connected");
             } catch(e) { 
                 console.error(e);
-                alert("Connection Failed or Permission Denied (Check Rules).");
+                alert("Connection Failed or Empty DB.");
                 globalData.users = []; 
                 document.getElementById('loader').classList.add('hidden');
                 switchTab('users');
             }
+        }
+
+        async function pushData() {
+            const baseUrl = cleanUrl(dbUrl);
+            try {
+                await fetch(baseUrl + "/.json", {
+                    method: 'PUT',
+                    body: JSON.stringify(globalData)
+                });
+                showToast("Saved");
+                renderUsers();
+            } catch(e) { showToast("Error Saving"); }
         }
 
         function switchTab(t) {
@@ -366,7 +405,11 @@
         }
 
         function copyPassword(pass) {
-            navigator.clipboard.writeText(pass).then(() => showToast("Copied!")).catch(() => showToast("Failed"));
+            navigator.clipboard.writeText(pass).then(() => {
+                showToast("Password Copied!");
+            }).catch(() => {
+                showToast("Failed to Copy");
+            });
         }
 
         function renderUsers() {
@@ -380,7 +423,7 @@
             globalData.users.forEach((u, index) => {
                 if(!u) return;
 
-                const displayTitle = u.title || u.username;
+                const displayTitle = u.title || u.username; 
                 
                 if(search) {
                      const matchTitle = (u.title || "").toLowerCase().includes(search);
@@ -463,12 +506,30 @@
             });
         }
 
+        // --- CUSTOM INPUT LOGIC ---
+        function toggleCustomInput() {
+            const select = document.getElementById('newTitle');
+            const customInput = document.getElementById('customUsernameInput');
+            if(select.value === 'Custom') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+                customInput.value = "";
+            }
+        }
+
         // --- USER MODAL ---
         function openUserModal() {
             currentEditIndex = -1;
             document.getElementById('modalTitle').innerText = "Add User";
             document.getElementById('btnSaveUser').innerText = "CREATE";
-            document.getElementById('newTitle').value = ""; // Clear Title
+            
+            // Reset Select
+            const select = document.getElementById('newTitle');
+            select.value = "";
+            toggleCustomInput(); // Hide custom
+            
             document.getElementById('newUsername').value = "";
             document.getElementById('newPassword').value = "";
             document.getElementById('newLimit').value = "1";
@@ -485,7 +546,32 @@
             document.getElementById('modalTitle').innerText = "Edit User";
             document.getElementById('btnSaveUser').innerText = "UPDATE";
             
-            document.getElementById('newTitle').value = u.title || ""; // Load Title
+            // Logic to populate Title
+            const select = document.getElementById('newTitle');
+            const customInput = document.getElementById('customUsernameInput');
+            const existingTitle = u.title || "";
+            
+            // Check if title is in select options
+            let found = false;
+            for(let i=0; i<select.options.length; i++) {
+                if(select.options[i].value === existingTitle) {
+                    select.value = existingTitle;
+                    found = true;
+                    break;
+                }
+            }
+            
+            if(!found && existingTitle) {
+                select.value = "Custom";
+                customInput.value = existingTitle;
+                customInput.style.display = 'block';
+            } else if (!found) {
+                select.value = ""; // Default empty
+                customInput.style.display = 'none';
+            } else {
+                customInput.style.display = 'none';
+            }
+
             document.getElementById('newUsername').value = u.username;
             document.getElementById('newPassword').value = u.password;
             document.getElementById('newLimit').value = u.device_limit;
@@ -495,7 +581,13 @@
         }
 
         async function saveUser() {
-            const t = document.getElementById('newTitle').value; // Get Title
+            let t = document.getElementById('newTitle').value;
+            // Handle custom title
+            if(t === 'Custom') {
+                t = document.getElementById('customUsernameInput').value.trim();
+                if(!t) { alert("Please enter custom name"); return; }
+            }
+
             const u = document.getElementById('newUsername').value;
             const p = document.getElementById('newPassword').value;
             const l = document.getElementById('newLimit').value;
@@ -504,7 +596,7 @@
             if(!u || !p || !e) return alert("Fill mandatory fields");
 
             const userData = {
-                title: t, // Save Title
+                title: t, 
                 username: u,
                 password: p,
                 expiry: e,
@@ -551,13 +643,7 @@
                 globalData.users[index].devices = [];
                 renderUsers(); // Refresh UI
                 
-                // Update specific user in database (or update all users if array structure requires it)
-                // Since we are using Array structure, we update the whole array for safety or specific index if supported
                 const baseUrl = cleanUrl(dbUrl);
-                
-                // Option 1: Update specific index (Efficient but risky if index shifted)
-                // Option 2: Update whole users array (Safe for array structure)
-                // We'll update the specific user node since we have index
                 await fetch(`${baseUrl}/users/${index}.json`, { 
                     method: 'PUT', 
                     body: JSON.stringify(globalData.users[index]) 
@@ -592,8 +678,8 @@
                     <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; margin-bottom:8px; border:1px solid var(--border);">
                         <div style="display:flex; justify-content:space-between; align-items:center;">
                             <div>
-                                <div style="font-weight:700; color:#fff; font-size:0.9rem;">${d.name || 'Unknown'}</div>
-                              <!--  <div style="font-size:0.75rem; color:var(--accent); font-family:'JetBrains Mono'">${d.id}</div> -->
+                                <div style="font-weight:700; color:#fff; font-size:0.9rem;">${d.name || 'Unknown Device'}</div>
+                                <div style="font-size:0.75rem; color:var(--accent); font-family:'JetBrains Mono'">${d.id}</div>
                                 <div style="margin-top:2px; font-size:0.7rem; color:var(--muted);">
                                     ${statusHtml} &bull; ${dateStr}
                                 </div>
