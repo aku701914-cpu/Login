@@ -246,20 +246,20 @@
             <div class="inp-label">DEVICE LIMIT</div>
             <input type="number" class="inp-field" placeholder="Max Devices" id="newLimit" value="1">
             <div class="shortcut-row">
-                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(1)">1</button>
-                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(2)">2</button>
-                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(3)">3</button>
                 <button type="button" class="btn-shortcut" onclick="setLimitShortcut(5)">5</button>
                 <button type="button" class="btn-shortcut" onclick="setLimitShortcut(10)">10</button>
+                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(15)">15</button>
+                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(20)">20</button>
+                <button type="button" class="btn-shortcut" onclick="setLimitShortcut(30)">30</button>
             </div>
 
             <div class="inp-label">EXPIRY DATE</div>
             <input type="date" class="inp-field" id="newExpiry">
             <div class="shortcut-row">
                 <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(-11)">Expire</button>
-                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(1)">1d</button>
-                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(15)">15d</button>
-                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(33)">30d</button>
+                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(-1)">1d</button>
+                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(14)">15d</button>
+                <button type="button" class="btn-shortcut" onclick="setExpiryShortcut(29)">30d</button>
             </div>
             <button class="btn-gradient" style="width:100%; justify-content:center; margin-top:20px;" onclick="saveUser()" id="btnSaveUser">SAVE</button>
             <button class="btn-mini btn-view" style="width:100%; margin-top:10px; border:none;" onclick="closeModals()">CANCEL</button>
